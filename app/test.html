@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="gbk">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .orderColor{
+            color:red;
+        }
+    </style>
+</head>
+<body >
+
+
+
+<div ng-style="{color:'red','margin-top':'50px'}">
+
+111111111111111111111111
+</div>
+
+
+
+<p>{{1+1}}</p>
+<p ng-bind="1+1"></p>
+<p ng-bind-template="1+1"></p>
+<p ng-bind-template='{{1+1}}'></p>
+<hr>
+<ul ng-inio="cityArr=['上海','北京','深圳']">
+    <li ng-class-even="111" ng-class-odd="222" ng-repeat="city in cityArr">
+        <span>index:{{$index}}</span>
+        <span>first:{{$first}}</span>
+        <span>middle:{{$middle}}</span>
+        <span>last:{{$last}}</span>
+        <span> {{city}}</span>
+    </li>
+</ul>
+<hr>
+<div ng-include="'other.html'"></div>
+<div ng-include src="'other.html'"></div>
+<hr>
+
+<div ng-controller="firstController">
+    <hr>
+    <img src="image/1.jpg">
+    <img src="{{src}}">
+    <img ng-src="{{src}}">
+    <img ng-href="{{src}}">
+
+    <hr>
+    <div ng-if="status">
+        status show
+    </div>
+    <hr>
+
+
+    <button ng-click="chageStatus($event)" type="button">切换状态</button>
+    {{status}}
+    <p ng-show="status">22222222222222</p>
+    <ul ng-switch on="status">
+        <li ng-switch-when="true">
+            true
+        </li>
+        <li ng-switch-when="false">
+            false
+        </li>
+
+    </ul>
+</div>
+
+<hr>
+
+<div ng-controller="productController" class="container">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="collapse navbar-collapse ">
+            <form class="form-group">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" ng-model="search ">
+                </div>
+            </form>
+        </div>
+    </nav>
+    <table class="table">
+        <thead>
+        <tr>
+            <th ng-click="changOrder('id')" ng-class="{dropup:order===''}">
+                产品编号
+                <span class="caret" ng-class="{orderColor:orderType === 'id'}"></span>
+            </th>
+            <th ng-click="changOrder('name')" ng-class="{dropup:order===''}">
+                产品名称
+                <span class="caret" ng-class="{orderColor:orderType === 'name'}"></span>
+            </th>
+            <th ng-click="changOrder('price')" ng-class="{dropup:order===''}">
+                产品价格
+                <span class="caret" ng-class="{orderColor:orderType === 'price'}"></span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="product in productData |filter:{id:search  }|orderBy:order+orderType">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.price|currency:"￥"}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+</div>
+<hr>
+
+<div>
+    {{123456789}}<br>
+    {{123456789|number}}<br>
+    {{123456789|number:3}}<br>
+    {{123456789|currency}}<br>
+    {{123456789|currency:'RMB'}}<br>
+    {{123456789|currency:"rmb"}}<br>
+
+</div>
+<hr>
+first.data <input type="text" ng-model="data.name" />
+first.data <input type="text" ng-model="Data.message" />
+<hr>
+
+
+
+
+<div ng-controller="firstController">
+
+    <custom-tags>2222222222</custom-tags>
+
+
+    {{today}}<br>
+    {{today|date:'medium'}}<br>
+    {{today|date:'short'}}<br>
+    {{today|date:'fullDate'}}<br>
+    {{today|date:'longDate'}}<br>
+    {{today|date:'mediumDate'}}<br>
+    {{today|date:'shortDate'}}<br>
+    {{today|date:'time'}}<br>
+    {{today|date:'longTime'}}<br>
+    {{today|date:'mediumTime'}}<br>
+    {{today|date:'shortTime'}}<br>
+    <hr>
+    {{today|date:'y'}}<br>
+    {{today|date:'yy'}}<br>
+    {{today|date:'yyyy'}}<br>
+    {{today|date:'M'}}<br>
+    {{today|date:'MM'}}<br>
+    {{today|date:'MMM'}}<br>
+    {{today|date:'MMMM'}}<br>
+    {{today|date:'d'}}<br>
+    {{today|date:'dd'}}<br>
+    {{today|date:'EEE'}}<br>
+    {{today|date:'EEEE'}}<br>
+    <hr>
+    {{today|date:'HH'}}<br>
+    {{today|date:'H'}}<br>
+    {{today|date:'hh'}}<br>
+    {{today|date:'h'}}<br>
+    {{today|date:'mm'}}<br>
+    {{today|date:'m'}}<br>
+    {{today|date:'ss'}}<br>
+    {{today|date:'s'}}<br>
+    {{today|date:'.sss'}}<br>
+    <hr>
+    {{today|date:'a'}}<br>
+    {{today|date:'Z'}}<br>
+    <hr>
+    {{today|date:'y-M-d H:m-s'}}
+    <hr>
+    {{[1,2,3,4,5,6,7]|limitTo:3}}<br>
+    {{[1,2,3,4,5,6,7]|limitTo:5}}<br>
+    {{[1,2,3,4,5,6,7]|limitTo:-5}}<br>
+    {{[1,2,3,4,5,6,7]|limitTo:-1}}<br>
+    <hr>
+    {{data.message}}<br>
+    {{data.message|lowercase}}<br>
+    {{data.message|uppercase}}<br>
+    <hr>
+    {{data.city}}<br>
+    {{data.city|filter:"上海"}}<br>
+    {{data.city|filter:"上海111"}}<br>
+    {{data.city|filter:"sichuang"}}<br>
+    {{data.city|filter:{py:"g"} }}<br>
+    <hr>
+    {{data.city|orderBy:"py"}}<br>
+    {{data.city|orderBy:"-py"}}<br>
+    {{data.city|filter:checkName}}
+    <hr>
+    <p>
+        first-name:{{data.name}}
+    </p>
+    <p>
+        first-message:{{Data.message}}
+    </p>
+
+
+
+    <hr>
+    <hr>
+    <div ng-controller="personController">
+        <ul>
+            <li ng-repeat="user in data|fitlerAge">
+                {{user.name}}
+                {{user.age}}
+                {{user.city}}
+            </li>
+        </ul>
+    </div>
+    <hr>
+</div>
+<div ng-controller="secondController">
+    <p>
+        second-name:{{data.name}}
+    </p>
+    <p>
+        second-message:{{Data.message}}
+    </p>
+
+</div>
+
+<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="test.js"></script>
+
+</body>
+</html>
