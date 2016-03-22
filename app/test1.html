@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="testController">
+
+    </div>
+
+<hr>
+
+    <div>
+        <custom-tags>原始数据，</custom-tags>
+    </div>
+    <div ng-controller="MyController">
+        <hr>
+        {{date}}<br>
+        <hr>
+        改变次数：{{count}}<br>{{value}}<br>
+        <input type="text" ng-model="value" /><br>
+        <hr>
+        <div custom-tags custom-tags2></div>
+        <input type="text" ng-model="name" /><br>
+        <p>
+            first:{{name}}
+        </p>
+    </div>
+    <div ng-controller="secondController">
+        <input type="text" ng-model="name" /><br>
+        <p>
+            first:{{name}}
+        </p>
+    </div>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="test1.js"></script>
+</body>
+</html>

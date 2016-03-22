@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+</head>
+<body>
+<div ng-app="myApp" class="container" style="margin-top: 100px">
+    <form name="myForm" ng-controller="firstController">
+        <div class="form-group" ng-class="{'has-error':myForm.username.$dirty && myForm.username.$invalid}">
+            <label class="col-sm-2">用户名</label>
+            <label class="col-sm-10">
+                <input name="username" autocomplete="off" ng-pattern="/^[a-zA-Z]{1}/" type="text" ng-model="data.username" ng-required="true" ng-minlength="5" ng-maxlength="10" class="form-control" placeholder="用户名">
+                <div ng-show="myForm.username.$error.maxlength" class="alert alert-danger help-block">
+                    用户名长度不能大于10位
+                </div>
+                <div  ng-show="myForm.username.$error.minlength" class="alert alert-danger help-block">
+                    用户名长度不能小于5位
+                </div>
+                <div  ng-show="myForm.username.$error.pattern" class="alert alert-danger help-block">
+                    用户名必须以英文字母开始
+                </div>
+            </label>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error':myForm.password.$dirty && myForm.password.$invalid}">
+            <label class="col-sm-2">密 码</label>
+            <label class="col-sm-10">
+                <input name="password" autocomplete="off" type="password" ng-model="data.password" ng-required="true" ng-minlength="5" ng-maxlength="10" class="form-control" placeholder="密 码">
+                <div ng-show="myForm.password.$error.maxlength" class="alert alert-danger help-block">
+                    密 码长度不能大于10位
+                </div>
+                <div ng-show="myForm.password.$error.minlength" class="alert alert-danger help-block">
+                    密 码长度不能小于5位
+                </div>
+            </label>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error':myForm.passwordConfirm.$dirty && myForm.passwordConfirm.$invalid}">
+            <label class="col-sm-2">确认密码</label>
+            <label class="col-sm-10">
+                <input name="passwordConfirm" autocomplete="off" type="password" ng-model="data.passwordConfirm" ng-required="true"  class="form-control" placeholder="确认密码">
+                <div ng-show="myForm.password.$dirty && myForm.passwordConfirm.$dirty && data.password !=data.passwordConfirm" class="alert alert-danger help-block">
+                    密码和确认密码不一致
+                </div>
+
+            </label>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error':myForm.email.$dirty && myForm.email.$invalid}">
+            <label class="col-sm-2">邮箱</label>
+            <label class="col-sm-10">
+                <input name="email" autocomplete="off" type="email" ng-model="data.email" ng-required="true" ng-minlength="5" ng-maxlength="30" class="form-control" placeholder="email">
+                <div ng-show="myForm.email.$error.maxlength" class="alert alert-danger help-block">
+                    邮箱长度不能大于30位
+                </div>
+                <div ng-show="myForm.email.$error.minlength" class="alert alert-danger help-block">
+                    邮箱长度不能小于5位
+                </div>
+                <div ng-show="myForm.email.$error.email" class="alert alert-danger help-block">
+                    邮箱格式不正确
+                </div>
+            </label>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error':myForm.blog.$dirty && myForm.blog.$invalid}">
+            <label class="col-sm-2">博客网址</label>
+            <label class="col-sm-10">
+                <input name="blog" autocomplete="off" type="url" ng-model="data.blog" ng-required="true" ng-minlength="5" ng-maxlength="30" class="form-control" placeholder="blog">
+                <div ng-show="myForm.blog.$error.maxlength" class="alert alert-danger help-block">
+                    网址长度不能大于30位
+                </div>
+                <div ng-show="myForm.blog.$error.minlength" class="alert alert-danger help-block">
+                    网址长度不能小于5位
+                </div>
+                <div ng-show="myForm.blog.$error.url" class="alert alert-danger help-block">
+                    网址格式不正确
+                </div>
+            </label>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error':myForm.blog.$dirty && myForm.blog.$invalid}">
+            <label class="col-sm-2">性别</label>
+            <label class="col-sm-10">
+                <label class="radio-inline">
+                    <input type="radio" name="sex" ng-model="data.sex" value="1" /> 男
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="sex" ng-model="data.sex" value="0" /> 女
+                </label>
+            </label>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error':myForm.blog.$dirty && myForm.blog.$invalid}">
+            <label class="col-sm-2">爱好</label>
+            <label class="col-sm-10">
+                <label class="checkbox-inline" ng-repeat="hobby in hobbies">
+                    <input type="checkbox" name="hobby[]" ng-click="toggleHobbySelection(hobby.id)" value="{{hobby.id}}" /> {{hobby.name}}
+                </label>
+            </label>
+        </div>
+    </form>
+</div>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="form.js"></script>
+</body>
+</html>
